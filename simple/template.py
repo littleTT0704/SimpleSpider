@@ -21,21 +21,21 @@ def get_html(url):
             time.sleep(5)
     return ""
 
-def img_list(url):
+def item_list(url):
     html = get_html(url)
     if html == "":
-        print("Get image list error!!!")
+        print("Get item list error!!!")
         return []
     html = html.decode('utf-8')
-    reg = r'<img.*?src="(.*?)".*?>' # how to recognize the images
+    reg = r'' # how to recognize the items
     r = re.compile(reg)
     url_list = r.findall(html)
     return url_list
 
-i = img_list("") # root page
+i = item_list("") # source page
 n = 0
 print(i)
-for img in i:
-    with open("%d.jpg" % n, "wb") as f: # filename
-        f.write(get_html(img))
+for item in i:
+    with open("%d" % n, "wb") as f: # filename
+        f.write(get_html(item))
     n += 1
